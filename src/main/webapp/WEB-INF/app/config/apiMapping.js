@@ -306,7 +306,8 @@ var apiMapping = {
 	FieldValue: {
 		update: {
 			'endpoint': '/private/queue',
-			'controller': 'submission'
+			'controller': 'submission',
+			'method': ":submissionId/update-field-value"
 		}
 	},
 	GraduationMonth: {
@@ -429,7 +430,7 @@ var apiMapping = {
 		addEmailWorkflowRule: {
 			'endpoint': '/private/queue',
 			'controller': 'organization',
-			'metod': 'add-email-workflow-rule'
+			'method': ":organizationId/add-email-workflow-rule"
 		},
 		editEmailWorkflowRule: {
 			'endpoint': '/private/queue',
@@ -453,7 +454,7 @@ var apiMapping = {
 		changeEmailWorkflowRuleActivation: {
 			'endpoint': '/private/queue',
 			'controller': 'organization',
-			'method': 'change-email-workflow-rule-activation'	
+			'method': ':orgId/change-email-workflow-rule-activation/:ruleId'	
 		},
 		listen: {
 			'endpoint': '/channel',
@@ -840,7 +841,8 @@ var apiMapping = {
 		},
 		removeFilter: {
 			'endpoint': '/private/queue',
-			'controller': 'submission-list'
+			'controller': 'submission-list',
+			'method': 'remove-filter-criterion/:namedSearchFilterName'
 		},
 		clearFilters: {
 			'endpoint': '/private/queue',

@@ -5,25 +5,21 @@ vireo.model("NamedSearchFilter", function NamedSearchFilter(WsApi) {
 
 		namedSearchFilter.set = function(filter) {
 
-			angular.extend(apiMapping.NamedSearchFilter.setFilter, {
-				"data": filter
+			var promise = WsApi.fetch(namedSearchFilter.getMapping().setFilter, {
+				data: filter
 			});
-
-			var promise = WsApi.fetch(namedSearchFilter.getMapping().setFilter);
 
 			return promise;
 		};
 
 		namedSearchFilter.removeFilter = function(criterionName, filterValue) {
 
-			angular.extend(apiMapping.NamedSearchFilter.removeFilter, {
+			var promise = WsApi.fetch(namedSearchFilter.getMapping().removeFilter, {
 				"data": {
 					"criterionName":criterionName,
 					"filterValue":filterValue
 				}
 			});
-
-			var promise = WsApi.fetch(namedSearchFilter.getMapping().removeFilter);
 
 			return promise;
 		};

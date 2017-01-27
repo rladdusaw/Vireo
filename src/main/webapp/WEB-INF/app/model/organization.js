@@ -29,8 +29,9 @@ vireo.model("Organization", function Organization($q, WsApi, RestApi) {
 		//Override
 		this.delete = function() {
 			var organization = this;
-			angular.extend(apiMapping.Organization.remove, {'data': organization});
-			var promise = RestApi.post(apiMapping.Organization.remove);
+			var promise = RestApi.post(apiMapping.Organization.remove, {
+				data: organization
+			});
 			promise.then(function(res) {
 				if(res.meta.type == "INVALID") {
 					organization.setValidationResults(res.payload.ValidationResults);
@@ -43,15 +44,16 @@ vireo.model("Organization", function Organization($q, WsApi, RestApi) {
 		this.addEmailWorkflowRule = function(templateId, recipient, submissionStateId) {
 
 			var organization = this;
-			angular.extend(apiMapping.Organization.addEmailWorkflowRule, {
-				'method': organization.id+"/add-email-workflow-rule",
-				'data': {
+			var promise = WsApi.fetch(apiMapping.Organization.addEmailWorkflowRule, {
+				pathValues: {
+					organizationId: organization.id
+				},
+				data: {
 					templateId: templateId,
 					recipient: recipient,
 					submissionStateId: submissionStateId
 				}
 			});
-			var promise = WsApi.fetch(apiMapping.Organization.addEmailWorkflowRule);
 			
 			return promise;
 
@@ -60,10 +62,11 @@ vireo.model("Organization", function Organization($q, WsApi, RestApi) {
 		this.removeEmailWorkflowRule = function(rule) {
 
 			var organization = this;
-			angular.extend(apiMapping.Organization.removeEmailWorkflowRule, {
-				'method': organization.id+"/remove-email-workflow-rule/"+rule.id,
+			var promise = WsApi.fetch(apiMapping.Organization.removeEmailWorkflowRule, {
+				pathValues: {
+					organizationId: organization.id+"/remove-email-workflow-rule/"+rule.id,
+				}
 			});
-			var promise = WsApi.fetch(apiMapping.Organization.removeEmailWorkflowRule);
 			
 			return promise;	
 
@@ -86,10 +89,13 @@ vireo.model("Organization", function Organization($q, WsApi, RestApi) {
 
 		this.changeEmailWorkflowRuleActivation = function(rule) {
 			var organization = this;
-			angular.extend(apiMapping.Organization.changeEmailWorkflowRuleActivation, {
-				'method': organization.id+"/change-email-workflow-rule-activation/"+rule.id,
+
+			var promise = WsApi.fetch(apiMapping.Organization.changeEmailWorkflowRuleActivation, {
+				pathValues: {
+					orgId: organization.id,
+					ruleId: rule.id	
+				} 
 			});
-			var promise = WsApi.fetch(apiMapping.Organization.changeEmailWorkflowRuleActivation);
 			
 			return promise;	
 		};
