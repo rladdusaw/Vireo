@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rladdusaw/Vireo.svg?branch=master)](https://travis-ci.org/rladdusaw/Vireo)
+[![Build Status](https://travis-ci.org/rladdusaw/Vireo.svg?branch=4.0.x)](https://travis-ci.org/rladdusaw/Vireo)
 
 # Vireo 4
 Vireo 4 is a turnkey Electronic Thesis and Dissertation (ETD) Management System.
